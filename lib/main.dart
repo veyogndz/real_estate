@@ -25,14 +25,14 @@ class MyApp extends StatelessWidget {
       designSize: const Size(375 , 812),
       minTextAdapt: true,
       splitScreenMode: true,
-      builder: (BuildContext context) {
+      builder: (v) {
         return GetMaterialApp(
             debugShowCheckedModeBanner: false,
             title: 'Flutter Demo',
             theme: ThemeData(
               primarySwatch: Colors.blue,
             ),
-            home: const ProductTour1());
+            home:  ProductTour1());
       },
     );
   }

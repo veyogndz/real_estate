@@ -22,6 +22,7 @@ class _LoginOptionState extends State<LoginOption> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        resizeToAvoidBottomInset: false,
         backgroundColor: UtilColor.containerColor,
         body: Column(
           children: [
@@ -53,7 +54,7 @@ class _LoginOptionState extends State<LoginOption> {
             SizedBox(height: 52.h),
             UsedButton(
               onPressed: () {
-                Get.to(const LoginForm());
+                Get.to( LoginForm());
               },
               stepChild: Row(
                 mainAxisAlignment: MainAxisAlignment.center,

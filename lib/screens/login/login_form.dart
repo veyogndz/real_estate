@@ -14,7 +14,7 @@ import '../../atomic_design/molecule/gf_button.dart';
 import '../../atomic_design/molecule/long_text_button.dart';
 
 class LoginForm extends StatefulWidget {
-  const LoginForm({Key? key}) : super(key: key);
+  const LoginForm({Key? key }) : super(key: key);
 
   @override
   State<LoginForm> createState() => _LoginFormState();
@@ -200,12 +200,9 @@ class _LoginFormState extends State<LoginForm> {
                   child: isEmpty == true
                       ? UsedButton(
                           onPressed: () {
-                            /*if (isCorrect == true) {
-                              isCorrect = false;
-                              setState(() {});
-                            }*/
                             loginUserEmailAndPassword();
-                            Get.to(const LocationEmpty());
+
+                            Get.to(LocationEmpty());
                           },
                           stepChild: Text(
                             "Login",
@@ -277,7 +274,7 @@ class _LoginFormState extends State<LoginForm> {
     try {
       var _userCredential = await auth.signInWithEmailAndPassword(
           email: emailController.text, password: passwordController.text);
-      print(_userCredential.toString());
+      print("ididid"+_userCredential.toString());
     } catch (e) {
       debugPrint(e.toString());
     }

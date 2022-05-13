@@ -4,8 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:real_estate/atomic_design/atom/lato_text.dart';
 import 'package:real_estate/atomic_design/molecule/usedButton.dart';
-import 'package:real_estate/controller/app_controller.dart';
-import 'package:real_estate/screens/register/register_code.dart';
+import 'package:real_estate/screens/login/login_form.dart';
 import '../../atomic_design/molecule/texts_button.dart';
 import '../../auth_helper/auht_helper_user.dart';
 import '../../models/user_model.dart';
@@ -182,7 +181,9 @@ class _RegisterFormState extends State<RegisterForm> {
                   onPressed: () {
                     emailControllerContent = emailController.text;
                     print(emailControllerContent);
-                    Get.to(const RegisterCode());
+                    signupUserEmailAndPassword();
+                    print("uid : "+ uid.toString());
+                    Get.to(LoginForm());
                   },
                   stepChild: const Text("Register"),
                 ),
@@ -207,6 +208,7 @@ class _RegisterFormState extends State<RegisterForm> {
         password: passwordController.text,
         createDate: DateTime.now().toString(),
         userName: userController.text,
+        unID: uid.toString(),
       );
       await AuthHelperUser().addUser(userModel, uid);
       if (_myUser!.emailVerified) {

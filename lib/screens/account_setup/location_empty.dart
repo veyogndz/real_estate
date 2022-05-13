@@ -1,54 +1,30 @@
-import 'dart:async';
-import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:real_estate/atomic_design/atom/lato_text.dart';
 import 'package:real_estate/atomic_design/atom/raleway_text.dart';
+import 'package:real_estate/atomic_design/molecule/next_button.dart';
+import 'package:real_estate/screens/account_setup/preferable.dart';
 import 'package:real_estate/screens/login/login_form.dart';
 import '../../atomic_design/molecule/back_button.dart';
 import '../../atomic_design/molecule/skip_button.dart';
 import '../../util/util_colors.dart';
+import 'maps.dart';
 
 class LocationEmpty extends StatefulWidget {
-  const LocationEmpty({Key? key}) : super(key: key);
+  const LocationEmpty({Key? key }) : super(key: key);
 
   @override
   State<LocationEmpty> createState() => _LocationEmptyState();
 }
 
 class _LocationEmptyState extends State<LocationEmpty> {
-  static const _initialCameraPosition =
-      CameraPosition(target: LatLng(40.015137, 28.979530), zoom: 11.5);
-  GoogleMapController? _googleMapController;
-  BitmapDescriptor? customMarker;
-  List<Marker> allMarkers = [];
-
-  getCustomMarker() async {
-    customMarker = await BitmapDescriptor.fromAssetImage(
-        ImageConfiguration.empty, 'assets/icon.png');
-  }
-
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-    Geolocator.requestPermission();
-    getCustomMarker();
-  }
-
-  @override
-  void dispose() {
-    _googleMapController!.dispose();
-    super.dispose();
-  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       body: SafeArea(
         child: Padding(
           padding: EdgeInsets.only(left: 24.w, right: 24.w, top: 12.h),
@@ -70,7 +46,7 @@ class _LocationEmptyState extends State<LocationEmpty> {
                     ),
                   ),
                   SkipButton(onPressed: () {
-                    Get.to(const LoginForm());
+                    Get.to( LoginForm());
                   })
                 ],
               ),
@@ -98,61 +74,9 @@ class _LocationEmptyState extends State<LocationEmpty> {
                 ),
               ),
               SizedBox(height: 33.h),
-              Stack(
-                children: [
-                  Container(
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(25.r),
-                    ),
-                    width: 327.w,
-                    height: 300.h,
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(25.r),
-                      child: GoogleMap(
-                          markers: Set.from(allMarkers),
-                          myLocationButtonEnabled: false,
-                          zoomControlsEnabled: false,
-                          initialCameraPosition: _initialCameraPosition,
-                          onMapCreated: (GoogleMapController control) {
-                            setState(() {
-                              allMarkers.add(Marker(
-                                  icon: customMarker!,
-                                  markerId: MarkerId('myMarker'),
-                                  draggable: false,
-                                  onTap: () {
-                                    print('Marker Tapped');
-                                  },
-                                  position: LatLng(41.015137, 28.979530)));
-                            });
-                          }),
-                    ),
-                  ),
-                  Padding(
-                    padding: EdgeInsets.only(top: 250.h),
-                    child: BackdropFilter(
-                      filter: ImageFilter.blur(sigmaY: 0),
-                      child: SizedBox(
-                        width: 327.w,
-                        height: 50.h,
-                        child: ElevatedButton(
-                          onPressed: () {},
-                          child: Text(
-                            "select on map",
-                            style: GoogleFonts.raleway(
-                                color: UtilColor.greyDark, fontSize: 12.r),
-                          ),
-                          style: ElevatedButton.styleFrom(
-                            primary: UtilColor.containerColor.withOpacity(0.8),
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(15.r)),
-                            elevation: 0,
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
+              SizedBox(width: 327.w, height: 300.h, child: const Maps(
+              isShould: true,
+              )),
               SizedBox(height: 34.h),
               ElevatedButton(
                 onPressed: () {},
@@ -173,7 +97,11 @@ class _LocationEmptyState extends State<LocationEmpty> {
                               weight: FontWeight.w400,
                               colors: UtilColor.softGrey),
                           SizedBox(width: 158.h),
-                          Icon(Icons.arrow_forward_ios_outlined,size: 20.r,color: UtilColor.dividerColor,)
+                          Icon(
+                            Icons.arrow_forward_ios_outlined,
+                            size: 20.r,
+                            color: UtilColor.dividerColor,
+                          )
                         ],
                       )
                     ],
@@ -187,6 +115,16 @@ class _LocationEmptyState extends State<LocationEmpty> {
                   elevation: 0,
                 ),
               ),
+              SizedBox(height: 77.h),
+              Center(
+                child: SizedBox(
+                  width: 278.w,
+                  height: 63.h,
+                  child: NextButton(onPressed: () {
+                    Get.to(Preferable());
+                  }),
+                ),
+              ),
             ],
           ),
         ),
@@ -194,3 +132,30 @@ class _LocationEmptyState extends State<LocationEmpty> {
     );
   }
 }
+// Container(
+//   decoration: BoxDecoration(
+//     borderRadius: BorderRadius.circular(25.r),
+//   ),
+//   width: 327.w,
+//   height: 300.h,
+//   child: ClipRRect(
+//     borderRadius: BorderRadius.circular(25.r),
+//     child: GoogleMap(
+//         markers: Set.from(allMarkers),
+//         myLocationButtonEnabled: false,
+//         zoomControlsEnabled: false,
+//         initialCameraPosition: _initialCameraPosition,
+//         onMapCreated: (GoogleMapController control) {
+//           setState(() {
+//             allMarkers.add(Marker(
+//                 icon: customMarker!,
+//                 markerId: MarkerId('myMarker'),
+//                 draggable: false,
+//                 onTap: () {
+//                   print('Marker Tapped');
+//                 },
+//                 position: LatLng(41.015137, 28.979530)));
+//           });
+//         }),
+//   ),
+// ),

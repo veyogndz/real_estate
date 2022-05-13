@@ -10,7 +10,9 @@ import 'package:real_estate/screens/login/login_option.dart';
 import 'package:real_estate/screens/onboarding/product_tour_2.dart';
 import 'package:real_estate/util/util_colors.dart';
 
+
 class ProductTour1 extends StatefulWidget {
+
   const ProductTour1({Key? key}) : super(key: key);
 
   @override
@@ -28,6 +30,7 @@ class _ProductTour1State extends State<ProductTour1> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       backgroundColor: UtilColor.containerColor,
       body: SafeArea(
         child: PageContainer(
@@ -47,7 +50,7 @@ class _ProductTour1State extends State<ProductTour1> {
                       width: 52.32.w,
                     ),
                     SkipButton(onPressed: () {
-                      Get.to(const LoginOption());
+                      Get.to( LoginOption());
                     })
                   ],
                 ),
@@ -141,7 +144,7 @@ class _ProductTour1State extends State<ProductTour1> {
                       Padding(
                         padding: EdgeInsets.only(top:405.h,left: 81.w),
                         child: NextButton(onPressed: () {
-                          Get.to(const ProductTour2());
+                          Get.to(ProductTour2());
                         }),
                       )
                     ],

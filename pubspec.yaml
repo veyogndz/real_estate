@@ -41,13 +41,15 @@ dependencies:
   google_sign_in:
   cloud_firestore:
   firebase_storage:
-  cupertino_icons: ^1.0.2
-  firebase_core: ^1.15.0
+  cupertino_icons:
+  firebase_core:
   flutterfire_cli:
   pin_code_text_field:
   flutter_countdown_timer:
   google_maps_flutter:
   geolocator:
+  flutter_polyline_points:
+  google_maps_place_picker_mb:
 
 dev_dependencies:
   flutter_test:
@@ -58,7 +60,7 @@ dev_dependencies:
   # activated in the `analysis_options.yaml` file located at the root of your
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
-  flutter_lints: ^1.0.0
+  flutter_lints:
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

@@ -10,4 +10,6 @@ class UtilColor {
   static const Color gfButton = Color(0xffF5F4F8);
   static const Color textColor = Color(0xff1F4C6B);
   static const Color softGrey = Color(0xffA1A5C1);
+  static const Color cardBlue = Color(0xff4285F4);
+  static const Color cardGrey = Color(0xff34A853);
 }
