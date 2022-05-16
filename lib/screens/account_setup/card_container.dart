@@ -12,6 +12,8 @@ class CardContainer extends StatefulWidget {
 
 class _CardContainerState extends State<CardContainer> {
   String cardNumb="1234";
+  String expirationDate="01/25";
+  String cardName="Abuzer Kömürcü";
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -31,8 +33,8 @@ class _CardContainerState extends State<CardContainer> {
           borderRadius: BorderRadius.circular(25.r),
         ),
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          //mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          //crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Padding(
               padding: EdgeInsets.only(right: 24.w,left: 27.h,top: 31.h),
@@ -66,15 +68,28 @@ class _CardContainerState extends State<CardContainer> {
                 ],
               ),
             ),
-            Column(
-              children: [
-                 Row(
-                   children: [
+            Padding(
+              padding: EdgeInsets.only(left: 26.w,right: 24.w,bottom: 10.h),
+              child: Column(
+                  children: [
+                  Row(
+                    children: [
+                      Image.asset("assets/valid.png"),
+                      SizedBox(width: 8.w),
+                      LatoText(variable: expirationDate, size: 22.r, weight: FontWeight.w400, colors: Colors.white),
+                    ],
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      LatoText(variable: cardName, size: 22.r, weight: FontWeight.w400, colors: Colors.white),
+                      Image.asset("assets/mastercard.png")
+                    ],
+                  )
 
-                   ],
-                 )
-              ],
-            )
+                ],
+              ),
+            ),
 
           ],
         ),

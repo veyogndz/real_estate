@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:real_estate/models/house_model.dart';
+import '../models/payment_model.dart';
 import '../models/user_model.dart';
 
 class AuthHelperUser {
@@ -15,6 +16,11 @@ class AuthHelperUser {
   Future addHouseType(HouseModel houseModel, String uid) async {
     print("houseModel" + uid);
     await userReference.doc(uid).collection("favorites").add(houseModel.toJson());
+  }
+
+  Future addPaymentMethod(PaymentModel paymentModel, String uid)async{
+    print("paymentMode"+uid);
+    await userReference.doc(uid).collection("paymentMethod").add(paymentModel.toJson());
   }
 
 }

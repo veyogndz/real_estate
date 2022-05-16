@@ -133,9 +133,14 @@ class _PreferableState extends State<Preferable> {
                       onPressed: () {
                         HouseModel houseModel =
                             HouseModel(houseType: houseType.toString());
-                        AuthHelperUser().addHouseType(
-                            houseModel, FirebaseAuth.instance.currentUser!.uid);
-                        Get.to(const Payment());
+                        if (houseType.isNotEmpty) {
+                          AuthHelperUser().addHouseType(houseModel,
+                              FirebaseAuth.instance.currentUser!.uid);
+                          Get.off(const Payment());
+                          Get.closeAllSnackbars();
+                        } else {
+                          Get.snackbar("", "Lütfen en az 1 seçim yapınız.");
+                        }
                       },
                     ),
                   ),

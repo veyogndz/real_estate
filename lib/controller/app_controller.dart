@@ -20,4 +20,5 @@ class AppController extends GetxController {
     });
   }
 
+
 }

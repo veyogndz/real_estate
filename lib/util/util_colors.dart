@@ -12,4 +12,6 @@ class UtilColor {
   static const Color softGrey = Color(0xffA1A5C1);
   static const Color cardBlue = Color(0xff4285F4);
   static const Color cardGrey = Color(0xff34A853);
+  static const Color  paymentColor= Color(0xff53587A);
+  static const Color  paymentSelectColor= Color(0xff234F68);
 }
