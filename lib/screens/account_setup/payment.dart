@@ -212,7 +212,7 @@ class _PaymentState extends State<Payment> {
                      expirationDate: expirationDate.text,
                      cvv: cvv.text);
                     AppController.to.paymentModel.add(paymentModel);
-                   AuthHelperUser().updatePaymentMethod(FirebaseAuth.instance.currentUser!.uid, [paymentModel]);
+                   //AuthHelperUser().updatePaymentMethod(FirebaseAuth.instance.currentUser!.uid, [paymentModel]);
                    Get.to(const UserAccount());
                 },buttonName: "Next"),
               ),
