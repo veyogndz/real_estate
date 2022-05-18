@@ -14,6 +14,7 @@ import '../../atomic_design/atom/lato_text.dart';
 import '../../atomic_design/molecule/back_button.dart';
 import '../../atomic_design/molecule/next_button.dart';
 import '../../atomic_design/molecule/skip_button.dart';
+import '../../auth_helper/auht_helper_user.dart';
 import '../../util/util_colors.dart';
 
 class Payment extends StatefulWidget {
@@ -211,7 +212,7 @@ class _PaymentState extends State<Payment> {
                      expirationDate: expirationDate.text,
                      cvv: cvv.text);
                     AppController.to.paymentModel.add(paymentModel);
-                   //AuthHelperUser().updatePaymentMethod(FirebaseAuth.instance.currentUser!.uid, [paymentModel]);
+                   AuthHelperUser().updatePaymentMethod(FirebaseAuth.instance.currentUser!.uid, [paymentModel]);
                    Get.to(const UserAccount());
                 },buttonName: "Next"),
               ),
