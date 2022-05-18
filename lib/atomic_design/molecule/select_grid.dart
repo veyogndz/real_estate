@@ -1,8 +1,5 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import '../../auth_helper/auht_helper_user.dart';
-import '../../models/house_model.dart';
 import '../../util/util_colors.dart';
 import '../atom/lato_text.dart';
 
@@ -98,9 +95,6 @@ class _SelectGridState extends State<SelectGrid> {
           setState(() {});
         }
         widget.onPress(isCheck);
-
-       HouseModel houseModel = HouseModel(houseType:"House");
-       AuthHelperUser().addHouseType(houseModel, FirebaseAuth.instance.currentUser!.uid);
       },
     );
   }

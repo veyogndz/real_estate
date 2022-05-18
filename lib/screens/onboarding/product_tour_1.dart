@@ -10,9 +10,7 @@ import 'package:real_estate/screens/login/login_option.dart';
 import 'package:real_estate/screens/onboarding/product_tour_2.dart';
 import 'package:real_estate/util/util_colors.dart';
 
-
 class ProductTour1 extends StatefulWidget {
-
   const ProductTour1({Key? key}) : super(key: key);
 
   @override
@@ -22,7 +20,7 @@ class ProductTour1 extends StatefulWidget {
 class _ProductTour1State extends State<ProductTour1> {
   final controller = PageController(viewportFraction: 1.0, keepPage: true);
   final _currentPageNotifier = ValueNotifier<int>(0);
-  List<String>picture=[
+  List<String> picture = [
     "assets/onboarding_one.png",
     "assets/onboarding_two.png",
   ];
@@ -50,7 +48,7 @@ class _ProductTour1State extends State<ProductTour1> {
                       width: 52.32.w,
                     ),
                     SkipButton(onPressed: () {
-                      Get.to( LoginOption());
+                      Get.to(LoginOption());
                     })
                   ],
                 ),
@@ -98,7 +96,7 @@ class _ProductTour1State extends State<ProductTour1> {
                 ),
               ),
               Padding(
-                padding: EdgeInsets.only(left: 10.w, right: 10.w,bottom: 10.h),
+                padding: EdgeInsets.only(left: 10.w, right: 10.w, bottom: 10.h),
                 child: SizedBox(
                   width: 355.w,
                   height: 502.h,
@@ -109,12 +107,11 @@ class _ProductTour1State extends State<ProductTour1> {
                           Expanded(
                             child: PageView.builder(
                               itemBuilder: (BuildContext context, int index) {
-                                return  Container(
+                                return Container(
                                   decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(40.r),
                                   ),
-                                  child:
-                                  Image.asset(picture[index]),
+                                  child: Image.asset(picture[index]),
                                 );
                               },
                               itemCount: 2,
@@ -123,29 +120,31 @@ class _ProductTour1State extends State<ProductTour1> {
                               },
                               controller: controller,
                               scrollDirection: Axis.horizontal,
-
                             ),
                           ),
                         ],
                       ),
                       Padding(
-                        padding: EdgeInsets.only(top: 392.h,left: 142.w),
+                        padding: EdgeInsets.only(top: 392.h, left: 142.w),
                         child: LayoutBuilder(
-                          builder: (BuildContext context, BoxConstraints constraints) =>
+                          builder: (BuildContext context,
+                                  BoxConstraints constraints) =>
                               LinearProgressPageIndicator(
-                                itemCount: 2,
-                                currentPageNotifier: _currentPageNotifier,
-                                progressColor: Colors.white,
-                                width: 70.w,
-                                height: 3.h,
-                              ),
+                            itemCount: 2,
+                            currentPageNotifier: _currentPageNotifier,
+                            progressColor: Colors.white,
+                            width: 70.w,
+                            height: 3.h,
+                          ),
                         ),
                       ),
                       Padding(
-                        padding: EdgeInsets.only(top:405.h,left: 81.w),
-                        child: NextButton(onPressed: () {
-                          Get.to(ProductTour2());
-                        }),
+                        padding: EdgeInsets.only(top: 405.h, left: 81.w),
+                        child: NextButton(
+                            onPressed: () {
+                              Get.to(ProductTour2());
+                            },
+                            buttonName: "Next"),
                       )
                     ],
                   ),

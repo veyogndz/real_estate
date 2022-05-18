@@ -1,5 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:real_estate/models/house_model.dart';
+import 'package:flutter/cupertino.dart';
 import '../models/payment_model.dart';
 import '../models/user_model.dart';
 
@@ -13,14 +13,28 @@ class AuthHelperUser {
     await userReference.doc(uid).set(userModel.toJson());
   }
 
-  Future addHouseType(HouseModel houseModel, String uid) async {
-    print("houseModel" + uid);
-    await userReference.doc(uid).collection("favorites").add(houseModel.toJson());
+  Future updateHouseType(String uid, List<String> houseType) async {
+    await userReference
+        .doc(uid)
+        .update({"houseType": houseType})
+        .then((value) => debugPrint("Update succeed"))
+        .catchError((error) => debugPrint("Fail  $error"));
+      SetOptions(merge: true);
   }
 
-  Future addPaymentMethod(PaymentModel paymentModel, String uid)async{
-    print("paymentMode"+uid);
-    await userReference.doc(uid).collection("paymentMethod").add(paymentModel.toJson());
+  Future updatePaymentMethod(String uid , List<PaymentModel>paymentModel)async{
+    await userReference
+        .doc(uid)
+        .update({"paymentModel" : paymentModel.map((e) => e.toJson()).toList()})
+        .then((value) => debugPrint("Update succeed"))
+        .catchError((error) => debugPrint("Fail  $error"));
+    SetOptions(merge: true);
   }
-
 }
+/*
+   await userReference
+        .doc(uid)
+        .collection("users")
+        .add(AppController.to.allModel.toJson());
+  }
+ */

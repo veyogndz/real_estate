@@ -4,9 +4,10 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:real_estate/util/util_colors.dart';
 
 class NextButton extends StatelessWidget {
+  final String buttonName;
   final Function()? onPressed;
 
-  const NextButton({Key? key, required this.onPressed}) : super(key: key);
+  const NextButton({Key? key, required this.onPressed , required this.buttonName}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +17,7 @@ class NextButton extends StatelessWidget {
       child: ElevatedButton(
         onPressed: onPressed,
         child: Text(
-          "Next",
+          buttonName.toString(),
           style: GoogleFonts.lato(
               fontSize: 16.h, color: Colors.white, fontWeight: FontWeight.w700),
         ),

@@ -5,6 +5,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:real_estate/atomic_design/atom/lato_text.dart';
 import 'package:real_estate/atomic_design/atom/raleway_text.dart';
 import 'package:real_estate/atomic_design/molecule/next_button.dart';
+import 'package:real_estate/screens/account_setup/payment.dart';
 import 'package:real_estate/screens/account_setup/preferable.dart';
 import 'package:real_estate/screens/login/login_form.dart';
 import '../../atomic_design/molecule/back_button.dart';
@@ -20,7 +21,7 @@ class LocationEmpty extends StatefulWidget {
 }
 
 class _LocationEmptyState extends State<LocationEmpty> {
-
+  bool isHasData=true;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -122,7 +123,14 @@ class _LocationEmptyState extends State<LocationEmpty> {
                   height: 63.h,
                   child: NextButton(onPressed: () {
                     Get.to(Preferable());
-                  }),
+                    // if(isHasData == true){
+                    //   Get.to(const Preferable());
+                    //   isHasData =false;
+                    //   setState(() {});
+                    // }else if(isHasData == false){
+                    //   Get.to(const Payment());
+                    // }
+                  },buttonName: "Next"),
                 ),
               ),
             ],

@@ -1,5 +1,7 @@
 import 'dart:convert';
 
+import 'package:real_estate/models/payment_model.dart';
+
 UserModel userModelFromJson(String str) => UserModel.fromJson(json.decode(str));
 
 String userModelToJson(UserModel data) => json.encode(data.toJson());
@@ -11,6 +13,8 @@ class UserModel {
     required this.userName,
     required this.createDate,
     required this.unID,
+    required this.houseType,
+    required this.paymentModel,
   });
 
   String email;
@@ -18,20 +22,26 @@ class UserModel {
   String createDate;
   String userName;
   String unID;
+  List<String> houseType;
+  List<PaymentModel> paymentModel;
 
   factory UserModel.fromJson(Map<String, dynamic> json) => UserModel(
-    email: json["email"],
-    password: json["password"],
-    createDate: json["createDate"],
-    userName: json["userName"],
-    unID:  json["unId"],
+        email: json["email"],
+        password: json["password"],
+        createDate: json["createDate"],
+        userName: json["userName"],
+        unID: json["unId"],
+        houseType: json["houseType"],
+        paymentModel: json["paymentModel"],
   );
 
   Map<String, dynamic> toJson() => {
-    "email": email,
-    "password": password,
-    "createDate": createDate,
-    "userName" : userName,
-    "unId" :unID
+        "email": email,
+        "password": password,
+        "createDate": createDate,
+        "userName": userName,
+        "unId": unID,
+        "houseType": houseType,
+        "paymentModel":paymentModel.map((e) => e.toJson()).toList(),
   };
 }

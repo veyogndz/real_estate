@@ -4,6 +4,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:real_estate/atomic_design/atom/lato_text.dart';
 import 'package:real_estate/atomic_design/molecule/usedButton.dart';
+import 'package:real_estate/controller/app_controller.dart';
+import 'package:real_estate/models/payment_model.dart';
 import 'package:real_estate/screens/login/login_form.dart';
 import '../../atomic_design/molecule/texts_button.dart';
 import '../../auth_helper/auht_helper_user.dart';
@@ -209,6 +211,8 @@ class _RegisterFormState extends State<RegisterForm> {
         createDate: DateTime.now().toString(),
         userName: userController.text,
         unID: uid.toString(),
+        houseType: [],
+        paymentModel: [],
       );
       await AuthHelperUser().addUser(userModel, uid);
       if (_myUser!.emailVerified) {

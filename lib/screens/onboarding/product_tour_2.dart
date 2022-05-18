@@ -12,8 +12,7 @@ import 'package:real_estate/screens/onboarding/product_tour_3.dart';
 import 'package:real_estate/util/util_colors.dart';
 
 class ProductTour2 extends StatefulWidget {
-
-  const ProductTour2({Key? key }) : super(key: key);
+  const ProductTour2({Key? key}) : super(key: key);
 
   @override
   _ProductTour1State createState() => _ProductTour1State();
@@ -54,7 +53,7 @@ class _ProductTour1State extends State<ProductTour2> {
                         width: 52.32.w,
                       ),
                       SkipButton(onPressed: () {
-                        Get.to( LoginOption());
+                        Get.to(LoginOption());
                       })
                     ],
                   ),
@@ -153,7 +152,9 @@ class _ProductTour1State extends State<ProductTour2> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               BackButtons(
-                                onPress: () {Get.back();},
+                                onPress: () {
+                                  Get.back();
+                                },
                                 stepChild: Image.asset(
                                   "assets/back.png",
                                   width: 16.w,
@@ -162,9 +163,11 @@ class _ProductTour1State extends State<ProductTour2> {
                                 color: Colors.white,
                               ),
                               SizedBox(width: 15.w),
-                              NextButton(onPressed: () {
-                                Get.to( ProductTour3());
-                              }),
+                              NextButton(
+                                  onPressed: () {
+                                    Get.to(ProductTour3());
+                                  },
+                                  buttonName: "Next"),
                             ],
                           ),
                         )

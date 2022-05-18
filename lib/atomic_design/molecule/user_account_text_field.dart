@@ -58,6 +58,7 @@ class _UserAccountTextFieldState extends State<UserAccountTextField> {
               suffixIcon: Image.asset("assets/call.png"),
             ),
             onTap: () {},
+            keyboardType: TextInputType.number,
           ),
         ),
         SizedBox(height: 15.h),
@@ -83,14 +84,3 @@ class _UserAccountTextFieldState extends State<UserAccountTextField> {
     );
   }
 }
-/*
-TextFormField(
-            controller: widget.emailController,
-            decoration: InputDecoration(
-              contentPadding: EdgeInsets.all(12.r),
-              border: InputBorder.none,
-              suffixIcon: Image.asset("assets/email_blue.png",color: Colors.white),
-            ),
-            onTap: () {},
-          ),
- */

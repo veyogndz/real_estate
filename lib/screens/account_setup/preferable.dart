@@ -7,10 +7,10 @@ import 'package:real_estate/atomic_design/atom/lato_text.dart';
 import 'package:real_estate/atomic_design/molecule/back_button.dart';
 import 'package:real_estate/atomic_design/molecule/next_button.dart';
 import 'package:real_estate/atomic_design/molecule/select_grid.dart';
+import 'package:real_estate/auth_helper/auht_helper_user.dart';
+import 'package:real_estate/controller/app_controller.dart';
 import 'package:real_estate/screens/account_setup/payment.dart';
 import '../../atomic_design/molecule/skip_button.dart';
-import '../../auth_helper/auht_helper_user.dart';
-import '../../models/house_model.dart';
 import '../../util/util_colors.dart';
 
 class Preferable extends StatefulWidget {
@@ -29,7 +29,6 @@ class _PreferableState extends State<Preferable> {
     "assets/p5.png",
     "assets/p6.png",
   ];
-
   List<String> textList = [
     "Apartment",
     "Villa",
@@ -38,7 +37,7 @@ class _PreferableState extends State<Preferable> {
     "Home",
     "Cottage",
   ];
-  List<String> houseType = [];
+  //List<String> houseType = [];
 
   @override
   Widget build(BuildContext context) {
@@ -108,13 +107,13 @@ class _PreferableState extends State<Preferable> {
                             variableText: textList[index],
                             onPress: (val) {
                               if (val == false) {
-                                houseType.add(textList[index]);
-                                print(houseType.toString());
-                                print(houseType.length.toString());
+                                AppController.to.houseType.add(textList[index]);
+                                print(AppController.to.houseType.toString());
+                                print(AppController.to.houseType.length.toString());
                               } else if (val == true) {
-                                houseType.remove(textList[index]);
-                                print(houseType.toString());
-                                print(houseType.length);
+                                AppController.to.houseType.remove(textList[index]);
+                                print(AppController.to.houseType.toString());
+                                print(AppController.to.houseType.length);
                               }
                             },
                           );
@@ -130,19 +129,17 @@ class _PreferableState extends State<Preferable> {
                     width: 278.w,
                     height: 63.h,
                     child: NextButton(
-                      onPressed: () {
-                        HouseModel houseModel =
-                            HouseModel(houseType: houseType.toString());
-                        if (houseType.isNotEmpty) {
-                          AuthHelperUser().addHouseType(houseModel,
-                              FirebaseAuth.instance.currentUser!.uid);
-                          Get.off(const Payment());
-                          Get.closeAllSnackbars();
-                        } else {
-                          Get.snackbar("", "Lütfen en az 1 seçim yapınız.");
-                        }
-                      },
-                    ),
+                        onPressed: () {
+                          if (AppController.to.houseType.isNotEmpty) {
+                            //AuthHelperUser().updateHouseType(FirebaseAuth.instance.currentUser!.uid, AppController.to.houseType);
+                            Get.to(const Payment());
+                            Get.closeAllSnackbars();
+                          } else {
+                            Get.snackbar("SEÇİM YAPILMADI.",
+                              "Lütfen en az 1 seçim yapınız.");
+                          }
+                        },
+                        buttonName: "Next"),
                   ),
                 ),
               )

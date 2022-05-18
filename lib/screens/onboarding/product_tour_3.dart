@@ -14,8 +14,7 @@ import '../../atomic_design/molecule/back_button.dart';
 import '../account_setup/location_empty.dart';
 
 class ProductTour3 extends StatefulWidget {
-
-  const ProductTour3({Key? key }) : super(key: key);
+  const ProductTour3({Key? key}) : super(key: key);
 
   @override
   _ProductTour1State createState() => _ProductTour1State();
@@ -67,7 +66,7 @@ class _ProductTour1State extends State<ProductTour3> {
                         width: 52.32.w,
                       ),
                       SkipButton(onPressed: () {
-                        Get.to( LoginOption());
+                        Get.to(LoginOption());
                       })
                     ],
                   ),
@@ -184,13 +183,12 @@ class _ProductTour1State extends State<ProductTour3> {
                               ),
                               SizedBox(width: 15.w),
                               NextButton(
-                                onPressed: () {
-                                  user != null
-                                      ? Get.to( LocationEmpty())
-                                      : Get.to( LoginOption());
-                                  ///////////////Get.to(LoginOption());
-                                },
-                              ),
+                                  onPressed: () {user != null
+                                      ? Get.to(const LocationEmpty())
+                                      : Get.to(const LoginOption());
+                                //Get.to(LoginOption());
+                                  },
+                                  buttonName: "Next"),
                             ],
                           ),
                         )

@@ -1,13 +1,16 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:real_estate/atomic_design/molecule/next_button.dart';
 import 'package:real_estate/atomic_design/molecule/user_account_text_field.dart';
+import 'package:real_estate/controller/app_controller.dart';
 import '../../atomic_design/atom/dmSans_text.dart';
 import '../../atomic_design/atom/lato_text.dart';
 import '../../atomic_design/molecule/back_button.dart';
 import '../../atomic_design/molecule/profile_container.dart';
 import '../../atomic_design/molecule/skip_button.dart';
+import '../../auth_helper/auht_helper_user.dart';
 import '../../util/util_colors.dart';
 
 class UserAccount extends StatefulWidget {
@@ -20,6 +23,7 @@ class UserAccount extends StatefulWidget {
 class _UserAccountState extends State<UserAccount> {
   TextEditingController nameController = TextEditingController();
   TextEditingController phoneController = TextEditingController();
+  String buttonName = "Next";
 
   @override
   Widget build(BuildContext context) {
@@ -88,9 +92,20 @@ class _UserAccountState extends State<UserAccount> {
                   phoneController: phoneController),
               SizedBox(height: 35.h),
               SizedBox(
-                  width: 278.w,
-                  height: 63.h,
-                  child: NextButton(onPressed: () {}))
+                width: 278.w,
+                height: 63.h,
+                child: NextButton(onPressed: () {
+                  if(nameController.text.isNotEmpty && phoneController.text.isNotEmpty){
+                    buttonName= "Finish";
+                    setState(() {});
+                  }else if(nameController.text.isEmpty || phoneController.text.isEmpty){
+                    buttonName = "Next";
+                    setState(() {});
+                  }
+                  AuthHelperUser().updatePaymentMethod(FirebaseAuth.instance.currentUser!.uid, AppController.to.paymentModel);
+
+                },buttonName:buttonName),
+              ),
             ],
           ),
         ),

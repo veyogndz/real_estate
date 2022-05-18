@@ -5,7 +5,7 @@ import 'package:get/get.dart';
 import 'package:real_estate/atomic_design/molecule/master_text_field_column.dart';
 import 'package:real_estate/atomic_design/molecule/payment_row.dart';
 import 'package:real_estate/atomic_design/molecule/paypal_text_field_column.dart';
-import 'package:real_estate/auth_helper/auht_helper_user.dart';
+import 'package:real_estate/controller/app_controller.dart';
 import 'package:real_estate/models/payment_model.dart';
 import 'package:real_estate/screens/account_setup/card_container.dart';
 import 'package:real_estate/screens/account_setup/user_account.dart';
@@ -36,6 +36,7 @@ class _PaymentState extends State<Payment> {
   TextEditingController numberController = TextEditingController();
   TextEditingController expirationDate = TextEditingController();
   TextEditingController cvv = TextEditingController();
+
 
   @override
   Widget build(BuildContext context) {
@@ -119,7 +120,6 @@ class _PaymentState extends State<Payment> {
                           isSelectedVisaColor = false;
                           setState(() {});
                         }
-                        // print(index)
                       },
                       paypalTextColor: !isSelectedPaypalColor
                           ? UtilColor.paymentSelectColor
@@ -209,10 +209,11 @@ class _PaymentState extends State<Payment> {
                      email: emailController.text,
                      cardNumber: numberController.text,
                      expirationDate: expirationDate.text,
-                     cvv: cvv.text,);
-                   AuthHelperUser().addPaymentMethod(paymentModel, FirebaseAuth.instance.currentUser!.uid);
+                     cvv: cvv.text);
+                    AppController.to.paymentModel.add(paymentModel);
+                   //AuthHelperUser().updatePaymentMethod(FirebaseAuth.instance.currentUser!.uid, [paymentModel]);
                    Get.to(const UserAccount());
-                }),
+                },buttonName: "Next"),
               ),
             )
           ],
