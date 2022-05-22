@@ -12,6 +12,7 @@ import '../../atomic_design/molecule/profile_container.dart';
 import '../../atomic_design/molecule/skip_button.dart';
 import '../../auth_helper/auht_helper_user.dart';
 import '../../util/util_colors.dart';
+import '../home/home.dart';
 
 class UserAccount extends StatefulWidget {
   const UserAccount({Key? key}) : super(key: key);
@@ -94,17 +95,29 @@ class _UserAccountState extends State<UserAccount> {
               SizedBox(
                 width: 278.w,
                 height: 63.h,
-                child: NextButton(onPressed: () {
-                  if(nameController.text.isNotEmpty && phoneController.text.isNotEmpty){
-                    buttonName= "Finish";
-                    setState(() {});
-                  }else if(nameController.text.isEmpty || phoneController.text.isEmpty){
-                    buttonName = "Next";
-                    setState(() {});
-                  }
-                  AuthHelperUser().updatePaymentMethod(FirebaseAuth.instance.currentUser!.uid, AppController.to.paymentModel);
-
-                },buttonName:buttonName),
+                child: NextButton(
+                    onPressed: () {
+                      if (nameController.text.isNotEmpty &&
+                          phoneController.text.isNotEmpty) {
+                        buttonName = "Finish";
+                        setState(() {});
+                      } else if (nameController.text.isEmpty ||
+                          phoneController.text.isEmpty) {
+                        buttonName = "Next";
+                        setState(() {});
+                      }
+                      AuthHelperUser().updatePaymentMethod(
+                          FirebaseAuth.instance.currentUser!.uid,
+                          AppController.to.stillPaymentModel);
+                      AuthHelperUser().updateHouseType(
+                          FirebaseAuth.instance.currentUser!.uid,
+                          AppController.to.houseType);
+                      AuthHelperUser().updateMobileNumber(
+                          FirebaseAuth.instance.currentUser!.uid,
+                          phoneController.text);
+                      Get.to(const Home());
+                    },
+                    buttonName: buttonName),
               ),
             ],
           ),

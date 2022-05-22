@@ -2,13 +2,22 @@ import 'dart:async';
 import 'package:get/get.dart';
 import 'package:real_estate/models/payment_model.dart';
 
-
 class AppController extends GetxController {
   static AppController to = Get.find();
   int counter = 0;
   Timer? timer;
   List<String> houseType = [];
-  List<PaymentModel> paymentModel=[];
+  List<PaymentModel> stillPaymentModel = List.filled(
+      1,
+      PaymentModel(
+        name: "asd",
+        email: "",
+        cardNumber: "",
+        expirationDate: "",
+        cvv: "",
+      ),
+      growable: true
+  );
 
   startTimer() {
     counter = 30;

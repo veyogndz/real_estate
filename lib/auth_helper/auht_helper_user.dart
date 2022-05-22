@@ -5,7 +5,7 @@ import '../models/user_model.dart';
 
 class AuthHelperUser {
   CollectionReference userReference =
-      FirebaseFirestore.instance.collection("users");
+  FirebaseFirestore.instance.collection("users");
   var getEmailContent = "";
 
   Future addUser(UserModel userModel, String uid) async {
@@ -19,7 +19,7 @@ class AuthHelperUser {
         .update({"houseType": houseType})
         .then((value) => debugPrint("Update succeed"))
         .catchError((error) => debugPrint("Fail  $error"));
-      SetOptions(merge: true);
+    SetOptions(merge: true);
   }
 
   Future updatePaymentMethod(String uid , List<PaymentModel>paymentModel)async{
@@ -30,6 +30,15 @@ class AuthHelperUser {
         .catchError((error) => debugPrint("Fail  $error"));
     SetOptions(merge: true);
   }
+  Future updateMobileNumber(String uid, String mobileNumber) async {
+    await userReference
+        .doc(uid)
+        .update({"mobileNumber": mobileNumber})
+        .then((value) => debugPrint("Update succeed"))
+        .catchError((error) => debugPrint("Fail  $error"));
+    SetOptions(merge: true);
+  }
+
 }
 /*
    await userReference
