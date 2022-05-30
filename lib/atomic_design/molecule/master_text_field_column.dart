@@ -11,21 +11,26 @@ class MasterTextFieldColumn extends StatefulWidget {
   final TextEditingController numberController;
   final TextEditingController expirationDate;
   final TextEditingController cvv;
+  final ValueChanged<String> nameField;
+  final ValueChanged<String> cardNumbField;
+  final ValueChanged<String> expirationField;
 
-  const MasterTextFieldColumn(
-      {Key? key,
-      required this.nameController,
-      required this.expirationDate,
-      required this.cvv,
-      required this.numberController})
-      : super(key: key);
+  const MasterTextFieldColumn({
+    Key? key,
+    required this.nameController,
+    required this.expirationDate,
+    required this.cvv,
+    required this.numberController,
+    required this.nameField,
+    required this.cardNumbField,
+    required this.expirationField,
+  }) : super(key: key);
 
   @override
   _MasterTextFieldColumnState createState() => _MasterTextFieldColumnState();
 }
 
 class _MasterTextFieldColumnState extends State<MasterTextFieldColumn> {
-
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -49,10 +54,9 @@ class _MasterTextFieldColumnState extends State<MasterTextFieldColumn> {
                     border: InputBorder.none,
                     suffixIcon: Image.asset("assets/profile.png"),
                   ),
-                  onTap: () {
-                    setState(() {});
-                  },
+                  onChanged: widget.nameField,
                   keyboardType: TextInputType.emailAddress,
+                  maxLength: 10,
                 ),
               ),
               SizedBox(height: 15.h),
@@ -70,11 +74,11 @@ class _MasterTextFieldColumnState extends State<MasterTextFieldColumn> {
                     border: InputBorder.none,
                     suffixIcon: Image.asset("assets/wallet.png"),
                   ),
-                  onTap: () {
-                    setState(() {});
-                  },
-                  keyboardType: TextInputType.emailAddress,
+                  maxLength: 16,
+                  onChanged: widget.cardNumbField,
+                  keyboardType: TextInputType.number,
                 ),
+
               ),
               SizedBox(height: 15.h),
               Row(
@@ -106,6 +110,7 @@ class _MasterTextFieldColumnState extends State<MasterTextFieldColumn> {
                           print('confirm $date');
                         }, currentTime: DateTime.now(), locale: LocaleType.tr);
                       },
+                      onChanged: widget.expirationField,
                       keyboardType: TextInputType.none,
                     ),
                   ),
@@ -126,6 +131,7 @@ class _MasterTextFieldColumnState extends State<MasterTextFieldColumn> {
                             fontSize: 12.r, color: UtilColor.softGrey),
                         prefixIcon: Image.asset("assets/wallet.png"),
                       ),
+                      maxLength: 3,
                       onTap: () {
                         setState(() {});
                       },

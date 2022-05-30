@@ -115,7 +115,7 @@ class _UserAccountState extends State<UserAccount> {
                       AuthHelperUser().updateMobileNumber(
                           FirebaseAuth.instance.currentUser!.uid,
                           phoneController.text);
-                      Get.to(const Home());
+                      Get.offAll(const Home());
                     },
                     buttonName: buttonName),
               ),

@@ -183,7 +183,8 @@ class _ProductTour1State extends State<ProductTour3> {
                               ),
                               SizedBox(width: 15.w),
                               NextButton(
-                                  onPressed: () {user != null
+                                  onPressed: () {
+                                    user != null
                                       ? Get.to(const LocationEmpty())
                                       : Get.to(const LoginOption());
                                 //Get.to(LoginOption());

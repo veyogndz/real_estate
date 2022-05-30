@@ -1,4 +1,3 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -14,7 +13,6 @@ import '../../atomic_design/atom/lato_text.dart';
 import '../../atomic_design/molecule/back_button.dart';
 import '../../atomic_design/molecule/next_button.dart';
 import '../../atomic_design/molecule/skip_button.dart';
-import '../../auth_helper/auht_helper_user.dart';
 import '../../util/util_colors.dart';
 
 class Payment extends StatefulWidget {
@@ -33,11 +31,12 @@ class _PaymentState extends State<Payment> {
   bool isSelectedVisa = false;
   TextEditingController nameController = TextEditingController();
   TextEditingController emailController = TextEditingController();
-  //TextEditingController nameController = TextEditingController();
   TextEditingController numberController = TextEditingController();
   TextEditingController expirationDate = TextEditingController();
   TextEditingController cvv = TextEditingController();
-
+  String cardNumb = "";
+  String expiration = "";
+  String cardName = "";
 
   @override
   Widget build(BuildContext context) {
@@ -85,14 +84,18 @@ class _PaymentState extends State<Payment> {
                       SizedBox(height: 20.h),
                       DmSansText(
                           variable:
-                          "You can edit this later on your account setting.",
+                              "You can edit this later on your account setting.",
                           size: 12.r,
                           weight: FontWeight.w400,
                           colors: UtilColor.greyDark)
                     ],
                   ),
                   SizedBox(height: 32.h),
-                  const CardContainer(),
+                  CardContainer(
+                    cardName: cardName,
+                    cardNumb: cardNumb,
+                    expirationDate: expirationDate.text,
+                  ),
                   SizedBox(height: 25.h),
                 ],
               ),
@@ -179,23 +182,46 @@ class _PaymentState extends State<Payment> {
             !isSelectedPaypal
                 ? SizedBox(width: 1.w, height: 0.000.h)
                 : Padding(
-                padding:
-                EdgeInsets.only(left: 24.w, right: 24.w, top: 15.h),
-                child:  PaypalTextFieldColumn(
-                  nameController: nameController,
-                  emailController: emailController,
-                )),
+                    padding:
+                        EdgeInsets.only(left: 24.w, right: 24.w, top: 15.h),
+                    child: PaypalTextFieldColumn(
+                      nameController: nameController,
+                      emailController: emailController,
+                      nameField: (value) {
+                        setState(() {
+                          cardName = value;
+                        });
+                      },
+                      emailField: (value) {},
+                    ),
+                  ),
             !isSelectedMastercard
                 ? SizedBox(width: 1.w, height: 0.000.h)
                 : Padding(
-                padding:
-                EdgeInsets.only(left: 24.w, right: 24.w, top: 15.h),
-                child: MasterTextFieldColumn(
-                  nameController: nameController,
-                  cvv: cvv,
-                  expirationDate: expirationDate,
-                  numberController: numberController,
-                )),
+                    padding:
+                        EdgeInsets.only(left: 24.w, right: 24.w, top: 15.h),
+                    child: MasterTextFieldColumn(
+                      nameController: nameController,
+                      cvv: cvv,
+                      expirationDate: expirationDate,
+                      numberController: numberController,
+                      cardNumbField:(value){
+                        setState(() {
+                          cardNumb = value;
+                        });
+                      } ,
+                      nameField: (value){
+                        setState(() {
+                          cardName = value;
+                        });
+                      },
+                    expirationField: (value){
+                      setState(() {
+                        expiration = value;
+                      });
+                    },
+                    ),
+                  ),
             !isSelectedPaypal && !isSelectedMastercard
                 ? SizedBox(height: 225.h)
                 : SizedBox(height: 55.h),
@@ -204,17 +230,19 @@ class _PaymentState extends State<Payment> {
               child: SizedBox(
                 width: 278.w,
                 height: 63.h,
-                child: NextButton(onPressed: (){
-                   PaymentModel paymentModel = PaymentModel(
-                     name: nameController.text,
-                     email: emailController.text,
-                     cardNumber: numberController.text,
-                     expirationDate: expirationDate.text,
-                     cvv: cvv.text);
-                    AppController.to.stillPaymentModel.add(paymentModel);
-                   //AuthHelperUser().updatePaymentMethod(FirebaseAuth.instance.currentUser!.uid, [paymentModel]);
-                   Get.to(const UserAccount());
-                },buttonName: "Next"),
+                child: NextButton(
+                    onPressed: () {
+                      PaymentModel paymentModel = PaymentModel(
+                          name: nameController.text,
+                          email: emailController.text,
+                          cardNumber: numberController.text,
+                          expirationDate: expirationDate.text,
+                          cvv: cvv.text);
+                      AppController.to.stillPaymentModel.add(paymentModel);
+                      //AuthHelperUser().updatePaymentMethod(FirebaseAuth.instance.currentUser!.uid, [paymentModel]);
+                      Get.to(const UserAccount());
+                    },
+                    buttonName: "Next"),
               ),
             )
           ],

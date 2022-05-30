@@ -20,13 +20,13 @@ class BackButtons extends StatelessWidget {
       height: 54.h,
       child: ElevatedButton(
         onPressed: onPress,
-        child: stepChild,
         style: ElevatedButton.styleFrom(
             primary: color,
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(100.r),
             ),
             elevation: 0),
+        child: stepChild,
       ),
     );
   }

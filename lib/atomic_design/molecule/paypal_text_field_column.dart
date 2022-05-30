@@ -5,11 +5,16 @@ import '../../util/util_colors.dart';
 class PaypalTextFieldColumn extends StatefulWidget {
   final TextEditingController nameController;
   final TextEditingController emailController;
+  final ValueChanged<String> nameField;
+  final ValueChanged<String> emailField;
 
   const PaypalTextFieldColumn({
     Key? key,
     required this.nameController,
     required this.emailController,
+    required this.emailField,
+    required this.nameField,
+
   }) : super(key: key);
 
   @override
@@ -36,9 +41,8 @@ class _PaypalTextFieldColumnState extends State<PaypalTextFieldColumn> {
               border: InputBorder.none,
               suffixIcon: Image.asset("assets/profile.png"),
             ),
-            onTap: () {
-              setState(() {});
-            },
+            maxLength: 10,
+            onChanged: widget.nameField,
             keyboardType: TextInputType.emailAddress,
           ),
         ),
@@ -57,7 +61,7 @@ class _PaypalTextFieldColumnState extends State<PaypalTextFieldColumn> {
               border: InputBorder.none,
               suffixIcon: Image.asset("assets/email_blue.png"),
             ),
-            onTap: () {},
+          onChanged: widget.emailField,
           ),
         ),
       ],
