@@ -39,6 +39,7 @@ class _ProductTour1State extends State<ProductTour2> {
         body: SafeArea(
           child: PageContainer(
             stepchild: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Padding(
@@ -58,7 +59,6 @@ class _ProductTour1State extends State<ProductTour2> {
                     ],
                   ),
                 ),
-                SizedBox(height: 38.24.h),
                 Padding(
                   padding: EdgeInsets.only(left: 24.29.w),
                   child: Column(
@@ -86,7 +86,6 @@ class _ProductTour1State extends State<ProductTour2> {
                           ),
                         ],
                       ),
-                      SizedBox(height: 20.h),
                       SizedBox(
                         width: 228.w,
                         height: 40.h,
@@ -101,7 +100,7 @@ class _ProductTour1State extends State<ProductTour2> {
                     ],
                   ),
                 ),
-                SizedBox(height: 30.h),
+               // SizedBox(height: 30.h),
                 Padding(
                   padding: EdgeInsets.only(left: 10.w, right: 10.w),
                   child: SizedBox(

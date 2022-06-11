@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:real_estate/atomic_design/molecule/bottom_nav_bar.dart';
 import 'package:real_estate/atomic_design/molecule/next_button.dart';
 import 'package:real_estate/atomic_design/molecule/user_account_text_field.dart';
 import 'package:real_estate/controller/app_controller.dart';
@@ -115,7 +116,7 @@ class _UserAccountState extends State<UserAccount> {
                       AuthHelperUser().updateMobileNumber(
                           FirebaseAuth.instance.currentUser!.uid,
                           phoneController.text);
-                      Get.offAll(const Home());
+                      Get.offAll(const BottomNavBar());
                     },
                     buttonName: buttonName),
               ),

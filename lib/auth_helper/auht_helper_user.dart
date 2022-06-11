@@ -42,18 +42,14 @@ class AuthHelperUser {
         .catchError((error) => debugPrint("Fail  $error"));
     SetOptions(merge: true);
   }
+  Future updateNotifications(String uid , List<String>notifications)async{
+    await userReference
+        .doc(uid)
+        .update({"notifications ": notifications})
+        .then((value) => debugPrint("Update succeed"))
+        .catchError((error)=>debugPrint("Fail $error"));
+    SetOptions(merge: true);
+  }
 
-  Future addEstate(EstateModel estateModel, String uid) async {
-    FirebaseFirestore.instance
-        .collection("estateModel")
-        .doc(uid)
-        .set(estateModel.toJson());
-  }
 }
-/*
-   await userReference
-        .doc(uid)
-        .collection("users")
-        .add(AppController.to.allModel.toJson());
-  }
- */
+

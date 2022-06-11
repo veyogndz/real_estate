@@ -66,22 +66,6 @@ class _HomeState extends State<Home> {
         return false;
       },
       child: Scaffold(
-        bottomNavigationBar: BottomNavigationBar(
-          items: const <BottomNavigationBarItem>[
-            BottomNavigationBarItem(
-              icon: Icon(Icons.call),
-              label: 'Calls',
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.camera),
-              label: 'Camera',
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.chat),
-              label: 'Chats',
-            ),
-          ],
-        ),
         body: SafeArea(
           child: Column(
             children: [
@@ -249,7 +233,6 @@ class _HomeState extends State<Home> {
                                 TextsButton(
                                     variable: "view all",
                                     onPressed: () {
-
                                       Get.to(const FeaturedEstate());
                                     })
                               ],
@@ -323,7 +306,7 @@ class _HomeState extends State<Home> {
                                 scrollDirection: Axis.horizontal,
                                 children: const [TopEstateAgent()],
                               ),
-                            )
+                            ),
                           ],
                         ),
                       ),

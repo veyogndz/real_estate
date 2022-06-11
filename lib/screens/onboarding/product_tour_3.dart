@@ -9,7 +9,6 @@ import 'package:real_estate/atomic_design/molecule/page_container.dart';
 import 'package:real_estate/atomic_design/molecule/skip_button.dart';
 import 'package:real_estate/screens/login/login_option.dart';
 import 'package:real_estate/util/util_colors.dart';
-
 import '../../atomic_design/molecule/back_button.dart';
 import '../account_setup/location_empty.dart';
 
@@ -53,6 +52,7 @@ class _ProductTour1State extends State<ProductTour3> {
           child: PageContainer(
             stepchild: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Padding(
                   padding:
@@ -71,7 +71,6 @@ class _ProductTour1State extends State<ProductTour3> {
                     ],
                   ),
                 ),
-                SizedBox(height: 38.24.h),
                 Padding(
                   padding: EdgeInsets.only(left: 24.29.w),
                   child: Column(
@@ -105,7 +104,6 @@ class _ProductTour1State extends State<ProductTour3> {
                         weight: FontWeight.w400,
                         colors: Colors.black,
                       ),
-                      SizedBox(height: 20.h),
                       SizedBox(
                         width: 228.w,
                         height: 40.h,
@@ -120,7 +118,6 @@ class _ProductTour1State extends State<ProductTour3> {
                     ],
                   ),
                 ),
-                SizedBox(height: 30.h),
                 Padding(
                   padding: EdgeInsets.only(left: 10.w, right: 10.w),
                   child: SizedBox(

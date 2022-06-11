@@ -43,7 +43,7 @@ class _LongToggleButtonState extends State<LongToggleButton> {
               widget.onToggleCallback(index);
               setState(() {});
             },
-            child: Container(
+            child : Container(
               width: 327.w,
               height: 50.h,
               decoration: ShapeDecoration(

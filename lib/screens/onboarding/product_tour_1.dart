@@ -1,6 +1,8 @@
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:page_view_indicators/linear_progress_page_indicator.dart';
 import 'package:real_estate/atomic_design/atom/lato_text.dart';
 import 'package:real_estate/atomic_design/molecule/next_button.dart';
@@ -37,15 +39,14 @@ class _ProductTour1State extends State<ProductTour1> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Padding(
-                padding:
-                    EdgeInsets.only(top: 30.4.h, right: 24.w, left: 24.29.w),
+                padding: EdgeInsets.only(top: 30.4.h, right: 24.w, left: 24.w),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Image.asset(
                       "assets/log.png",
-                      height: 55.36.h,
-                      width: 52.32.w,
+                      height: 55.h,
+                      width: 52.w,
                     ),
                     SkipButton(onPressed: () {
                       Get.to(LoginOption());
@@ -54,7 +55,7 @@ class _ProductTour1State extends State<ProductTour1> {
                 ),
               ),
               Padding(
-                padding: EdgeInsets.only(left: 24.29.w),
+                padding: EdgeInsets.only(left: 24.w),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -80,7 +81,6 @@ class _ProductTour1State extends State<ProductTour1> {
                         ),
                       ],
                     ),
-                    SizedBox(height: 20.h),
                     SizedBox(
                       width: 228.w,
                       height: 40.h,
@@ -141,7 +141,7 @@ class _ProductTour1State extends State<ProductTour1> {
                       Padding(
                         padding: EdgeInsets.only(top: 405.h, left: 81.w),
                         child: NextButton(
-                            onPressed: () {
+                            onPressed: () async {
                               Get.to(ProductTour2());
                             },
                             buttonName: "Next"),

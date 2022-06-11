@@ -213,6 +213,7 @@ class _RegisterFormState extends State<RegisterForm> {
         unID: uid.toString(),
         houseType: [],
         paymentModel: [],
+        notifications:[],
       );
       await AuthHelperUser().addUser(userModel, uid);
       if (_myUser!.emailVerified) {

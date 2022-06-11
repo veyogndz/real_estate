@@ -24,6 +24,8 @@ class RalewayText extends StatelessWidget {
         fontWeight: weight,
         color: colors,
       ),
+        overflow:TextOverflow.fade,
+        textAlign: TextAlign.center,
     );
   }
 }

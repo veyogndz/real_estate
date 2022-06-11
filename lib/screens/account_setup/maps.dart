@@ -17,9 +17,9 @@ class Maps extends StatefulWidget {
   _MapsState createState() => _MapsState();
 }
 
-double _originLatitude = 38.4382955939104;
-double _originLongitude = 27.141358956227965;
-double _destLatitude = 38.422733197746986;
+double _originLatitude = 34.4382955939104;
+double _originLongitude = 127.141358956227965;
+double _destLatitude = 3788.422733197746986;
 double _destLongitude =  27.129490953156576;
 
 class _MapsState extends State<Maps> {
@@ -62,7 +62,7 @@ class _MapsState extends State<Maps> {
           ),
           widget.isShould ?
           Padding(
-            padding: EdgeInsets.only(top: 250.h),
+            padding: EdgeInsets.only(top: 310.h),
             child: BackdropFilter(
               filter: ImageFilter.blur(sigmaY: 0),
               child: SizedBox(

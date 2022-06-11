@@ -58,7 +58,7 @@ class _LoginFormState extends State<LoginForm> {
                 child: isEmpty == false
                     ? SizedBox(
                         width: 408.w,
-                        height: 142.h,
+                        height: 90.h,
                         child: Image.asset("assets/life.png"),
                       )
                     : BackButtons(
@@ -121,7 +121,7 @@ class _LoginFormState extends State<LoginForm> {
                         color: UtilColor.gfButton,
                         borderRadius: BorderRadius.circular(10.r)),
                     width: 327.w,
-                    height: 65.h,
+                    height: 62.h,
                     child: TextFormField(
                       controller: emailController,
                       decoration: InputDecoration(
@@ -194,14 +194,13 @@ class _LoginFormState extends State<LoginForm> {
               ),
               SizedBox(height: 20.h),
               Center(
-                child: Container(
+                child: SizedBox(
                   width: 278.w,
                   height: 62.h,
                   child: isEmpty == true
                       ? UsedButton(
                           onPressed: () {
                             loginUserEmailAndPassword();
-
                             Get.to(LocationEmpty());
                           },
                           stepChild: Text(

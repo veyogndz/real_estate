@@ -1,7 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:real_estate/auth_helper/auht_helper_user.dart';
+import 'package:real_estate/auth_helper/auth_helper_estate.dart';
 import 'package:real_estate/models/estate_model.dart';
 
 class B extends StatefulWidget {
@@ -32,7 +32,6 @@ class _BState extends State<B> {
                 hintText: 'houseType', // küçülen yazı
                 labelText: 'Dob',
               ),
-
             ),
             TextFormField(
               controller: controller2,
@@ -67,8 +66,11 @@ class _BState extends State<B> {
                     houseType: controller1.text,
                     price: controller3.text,
                     score: controller4.text,
-                    pictures: []);
-                AuthHelperUser().addEstate(
+                    pictures: [],
+                    location: "",
+                    title: ""
+                );
+                AuthHelperEstate().addEstate(
                     estateModel, FirebaseAuth.instance.currentUser!.uid);
               },
               child: const Text("3-2-1 kayıt."),

@@ -15,6 +15,7 @@ class UserModel {
     required this.unID,
     required this.houseType,
     required this.paymentModel,
+    required this.notifications
   });
 
   String email;
@@ -24,6 +25,7 @@ class UserModel {
   String unID;
   List<String> houseType;
   List<PaymentModel> paymentModel;
+  List<String> notifications;
 
   factory UserModel.fromJson(Map<String, dynamic> json) => UserModel(
         email: json["email"],
@@ -33,6 +35,7 @@ class UserModel {
         unID: json["unId"],
         houseType: json["houseType"],
         paymentModel: json["paymentModel"],
+        notifications: json["notifications"],
   );
 
   Map<String, dynamic> toJson() => {
@@ -43,5 +46,6 @@ class UserModel {
         "unId": unID,
         "houseType": houseType,
         "paymentModel":paymentModel.map((e) => e.toJson()).toList(),
+        "notifications":notifications,
   };
 }
